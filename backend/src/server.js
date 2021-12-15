@@ -11,10 +11,73 @@ const app = express()
 
 app.use(express.json())
 
+//FUNCTIONS
+function checkToken(request,response,next){
+  const authHeader = request.headers['authorization']
+  const token = authHeader && authHeader.split(" ")[1]
+
+  if(!token){
+    return response.status(401).json({msg:"Access Denied!"})
+  }
+
+  try {
+    const secret = process.env.SECRET
+
+    jwt.verify(token,secret)
+
+    next()
+
+  } catch (error) {
+    response.status(400).json({msg:"Token invalid"})
+  }
+}
+
 app.get("/", (req, res)=>{
   return res.status(200).send("voltou")
 })
 
+// Login
+app.post('/auth/login', async(request,response)=>{
+  const {email, password} = request.body
+
+  if(!email){
+    return response.status(422).json({msg:"Email is required"})
+  }
+
+  if(!password){
+    return response.status(422).json({msg:"Password is required"})
+  }
+
+  const user = await User.findOne({email: email})
+
+  if (!user){
+    return response.status(404).json({msg:"User not found"})
+  }
+
+  const checkPassword = await bcrypt.compare(password, user.password)
+
+  if(!checkPassword){
+    return response.status(422).json({msg:"Password Invalid"})
+  }
+
+  try {
+
+    const secret = process.env.SECRET
+    const token = jwt.sign({
+      id: user._id
+    },secret)
+
+    response.status(200).json({msg:"Auth Sucessfull", token})
+    
+  } catch (error) {
+    console.log(error)
+
+    response.status(500).json({
+      msg:"Some failed"
+    })
+  }
+
+})
 
 // Register User
 app.post("/auth/register", async(request,response)=>{
