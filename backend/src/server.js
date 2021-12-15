@@ -48,9 +48,33 @@ app.get("/user/:id",checkToken , async (request, response)=>{
   
 })
 
+// All Users Registered
+
 app.get("/schedule",checkToken ,async(request, response)=>{
   const users = await User.find({}, '-password')
   return response.status(201).json(users)
+})
+
+// REgister a Schedule
+
+app.put("/register/:id", checkToken, async (request, response)=>{
+  const { id } = request.params
+  const { schedule } = request.body
+
+  const userInfo = await User.findById(id, '-password')
+ 
+  var allSchedules = []
+
+  userInfo.schedule.forEach(element => {
+    allSchedules.push(element)
+  });
+
+  allSchedules.push(schedule[0])
+
+  const user = await User.updateOne({_id:id}, { $set:{schedule: allSchedules}})
+
+  return response.status(200).json({user})
+  
 })
 
 // Login
