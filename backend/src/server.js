@@ -48,6 +48,11 @@ app.get("/user/:id",checkToken , async (request, response)=>{
   
 })
 
+app.get("/schedule",checkToken ,async(request, response)=>{
+  const users = await User.find({}, '-password')
+  return response.status(201).json(users)
+})
+
 // Login
 app.post('/auth/login', async(request,response)=>{
   const {email, password} = request.body
