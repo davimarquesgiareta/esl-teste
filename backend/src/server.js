@@ -4,6 +4,7 @@ import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 import dotenv from "dotenv"
 import User from './models/User.js'
+import { v4 as uuidv4 } from 'uuid';
 
 dotenv.config()
 
@@ -32,19 +33,32 @@ function checkToken(request,response,next){
   }
 }
 
-app.get("/user/:id",checkToken , async (request, response)=>{
+// Schedule Details
+app.get("/user/:id/:idescription",checkToken , async (request, response)=>{
  
-
     const id = request.params.id
+    const idescription = request.params.idescription
+
+    console.log(id)
+    console.log(idescription)
   
     const user = await User.findById(id, '-password')
-  
+
+    var indexSchedule = null
+
+     user.schedule.map( (element,index)=> {
+      if (element.id === idescription){
+        indexSchedule = index
+      }
+    })
+
+    const schedule =  user.schedule[indexSchedule]
+    
     if(!user){
       return response.status(404).json({msg:"User not found"})
     }
   
-    return response.status(200).json({user})
-  
+    return response.status(200).json({schedule})
   
 })
 
@@ -69,11 +83,22 @@ app.put("/register/:id", checkToken, async (request, response)=>{
     allSchedules.push(element)
   });
 
-  allSchedules.push(schedule[0])
+  const schedulePlusId = {
+    id: uuidv4(),
+    ...schedule[0]
+  }
+
+  console.log("schedule ai->", schedule[0])
+  console.log("schedule + id", schedulePlusId)
+  allSchedules.push(schedulePlusId)
+
+  console.log('ALL SCHEDULES', allSchedules)
 
   const user = await User.updateOne({_id:id}, { $set:{schedule: allSchedules}})
 
   return response.status(200).json({user})
+
+  // return response.status(200).json({msg:"ta.."})
   
 })
 
