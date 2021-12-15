@@ -32,8 +32,20 @@ function checkToken(request,response,next){
   }
 }
 
-app.get("/", (req, res)=>{
-  return res.status(200).send("voltou")
+app.get("/user/:id",checkToken , async (request, response)=>{
+ 
+
+    const id = request.params.id
+  
+    const user = await User.findById(id, '-password')
+  
+    if(!user){
+      return response.status(404).json({msg:"User not found"})
+    }
+  
+    return response.status(200).json({user})
+  
+  
 })
 
 // Login
