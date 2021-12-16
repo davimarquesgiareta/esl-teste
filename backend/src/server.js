@@ -62,6 +62,22 @@ app.get("/user/:id/:idescription",checkToken , async (request, response)=>{
   
 })
 
+// Delete a Schedule
+app.delete("/user/:id/:idescription", checkToken, async (request, response)=>{
+ 
+  const id = request.params.id
+  const idescription = request.params.idescription
+
+  const user = await User.findById(id, '-password')
+
+  var filteredSchedules = user.schedule.filter((value)=>{ return value.id !== idescription });
+
+  const updateWithDeletedUser = await User.updateOne({_id:id}, { $set:{schedule: filteredSchedules}})
+
+  return response.status(200).json({updateWithDeletedUser })
+  
+})
+
 // All Users Registered
 
 app.get("/schedule",checkToken ,async(request, response)=>{
@@ -101,6 +117,8 @@ app.put("/register/:id", checkToken, async (request, response)=>{
   // return response.status(200).json({msg:"ta.."})
   
 })
+
+
 
 // Login
 app.post('/auth/login', async(request,response)=>{
