@@ -99,23 +99,29 @@ app.put("/register/:id", checkToken, async (request, response)=>{
     allSchedules.push(element)
   });
 
+  function getDate(){
+    var date = new Date()
+    return date.toLocaleDateString('pt-BR')
+  }
+
+  function getHour(){
+    var date = new Date()
+    return (date.getHours()).toString() + ":" + (date.getMinutes()).toString()
+  }
+  
   const schedulePlusId = {
     id: uuidv4(),
+    date: getDate(),
+    hour: getHour(),
     ...schedule[0]
   }
 
-  console.log("schedule ai->", schedule[0])
-  console.log("schedule + id", schedulePlusId)
   allSchedules.push(schedulePlusId)
-
-  console.log('ALL SCHEDULES', allSchedules)
 
   const user = await User.updateOne({_id:id}, { $set:{schedule: allSchedules}})
 
   return response.status(200).json({user})
 
-  // return response.status(200).json({msg:"ta.."})
-  
 })
 
 
