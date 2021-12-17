@@ -124,8 +124,6 @@ app.put("/register/:id", checkToken, async (request, response)=>{
 
 })
 
-
-
 // Login
 app.post('/auth/login', async(request,response)=>{
   const {email, password} = request.body
@@ -215,6 +213,12 @@ console.log(error)
 response.status(500).json({msg:error})
 }
 
+})
+
+// Route test
+
+app.get("/teste", (request, response)=>{
+  return response.status(200).json({msg:"show de boleta"})
 })
 
 //Credentials
