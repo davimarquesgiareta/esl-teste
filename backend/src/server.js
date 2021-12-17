@@ -219,7 +219,7 @@ response.status(500).json({msg:error})
 
 // Route test
 
-app.get("/teste", (request, response)=>{
+app.get("/teste",checkToken, (request, response)=>{
   return response.status(200).json({msg:"show de boleta"})
 })
 

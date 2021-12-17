@@ -18,13 +18,18 @@ export default function useAuth() {
     setLoading(false);
   }, []);
   
-  async function handleLogin() {
-    const { data: { token } } = await api.post('/authenticate');
+  async function handleLogin(objRequest) {
+    console.log('qualquer eh ', objRequest)
+     
+    const { data: { token } } = await api.post('/auth/login', {
+      email: objRequest.email,
+      password: objRequest.password
+    });
 
     localStorage.setItem('token', JSON.stringify(token));
     api.defaults.headers.Authorization = `Bearer ${token}`;
     setAuthenticated(true);
-    history.push('/users');
+    history.push('/teste');
   }
 
   function handleLogout() {

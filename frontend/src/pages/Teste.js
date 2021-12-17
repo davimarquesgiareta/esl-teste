@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 
 import api from '../api';
+import { Context } from '../Context/AuthContext';
 
 
 export default function Teste() {
+  const { handleLogout } = useContext(Context);
 
   const [users, setUsers] = useState("");
 
@@ -23,14 +25,15 @@ export default function Teste() {
         {users.msg}
       </ul>
 
-      <button type="button" class="btn btn-primary position-relative">
+      <button type="button" className="btn btn-primary position-relative">
   Inbox
-  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
     99+
-    <span class="visually-hidden">unread messages</span>
+    <span className="visually-hidden">unread messages</span>
   </span>
 </button>
-
+<br/>
+<button type="button" onClick={handleLogout}>Sair</button>
     </>
   );
 }
