@@ -20,21 +20,27 @@ export default function useAuth() {
   
   async function handleLogin(objRequest) {
     console.log('qualquer eh ', objRequest)
+
+    console.log("user", )
      
-    const { data: { token } } = await api.post('/auth/login', {
+    const { data: { token, user } } = await api.post('/auth/login', {
       email: objRequest.email,
       password: objRequest.password
     });
 
+    console.log("user será", user )
+
+    localStorage.setItem('email', JSON.stringify(objRequest.email));
     localStorage.setItem('token', JSON.stringify(token));
     api.defaults.headers.Authorization = `Bearer ${token}`;
     setAuthenticated(true);
-    history.push('/teste');
+    history.push('/schedules', {user: user});
   }
 
   function handleLogout() {
     setAuthenticated(false);
     localStorage.removeItem('token');
+    localStorage.removeItem('email');
     api.defaults.headers.Authorization = undefined;
     history.push('/login');
   }

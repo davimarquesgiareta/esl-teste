@@ -5,7 +5,7 @@ import { Context } from './Context/AuthContext';
 
 import Login from './pages/Login';
 import Users from './pages/Users';
-import Teste from './pages/Teste';
+import Schedule from './pages/Schedule';
 import Register from './pages/Register';
 
 function CustomRoute({ isPrivate, ...rest }) {
@@ -26,7 +26,7 @@ export default function Routes() {
   return (
     <Switch>
       <CustomRoute exact path="/login" component={Login} />
-      <CustomRoute exact path="/teste" component={Teste} />
+      <CustomRoute exact path="/schedules" component={Schedule} />
       <CustomRoute exact path="/register" component={Register} />
       <CustomRoute isPrivate exact path="/users" component={Users} />
       
