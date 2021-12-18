@@ -1,19 +1,38 @@
 import React, { useContext, useState } from 'react';
+import api from '../api';
+import history from '../history';
 
 import { Context } from '../Context/AuthContext';
 
 export default function Register() {
   const { authenticated, handleLogin } = useContext(Context);
 
+  const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
 
-  function submit (){
+  async function submit (){
+
+    if (password === confirmPassword && password!== '' && email !== '' && name !== ''){
+      console.log('senhas batem e email ta preenchido')
+
+      const response = await api.post("/auth/register", {
+        name: name,
+        email: email,
+        password: password,
+        confirmpassword: confirmPassword 
+      }); 
+
+      
+      console.log(response)
+
+      history.push('/login');
+    }
     // var getEmail = document.getElementsByName("email");
     // var getPassword = document.getElementsByName("password");
     //onClick={()=> handleLogin({email, password})}
-    console.log("infos", email + password + confirmPassword)
+    console.log("infos", name + email + password + confirmPassword)
   }
   return (
     
@@ -32,6 +51,10 @@ export default function Register() {
   </div>
 
   <div class="container mt-3 rounded-left" style={{background:"#F8F8FF"}} >
+  <div class="form-group" >
+      <label for="exampleInputEmail1" ><h4>Nome</h4></label>
+      <input type="text" class="form-control"  name="name" aria-describedby="emailHelp" placeholder="Digite seu Nome" onChange={e => setName(e.target.value)}/>
+    </div>
     <div class="form-group" >
       <label for="exampleInputEmail1" ><h4>E-mail</h4></label>
       <input type="email" class="form-control"  name="email" aria-describedby="emailHelp" placeholder="Digite seu e-mail" onChange={e => setEmail(e.target.value)}/>
