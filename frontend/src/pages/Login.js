@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import history from '../history';
 
 import { Context } from '../Context/AuthContext';
 
@@ -8,7 +9,13 @@ export default function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  return (
+  const token = localStorage.getItem('token')
+
+  if (token){
+    history.push('/schedules') 
+  }
+  
+   return (
     <>
       <div class="container mt-3 rounded-left" style={{background:"#F8F8FF"}} >
         <div class="form-group" >
