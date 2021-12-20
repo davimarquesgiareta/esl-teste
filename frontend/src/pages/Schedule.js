@@ -6,12 +6,8 @@ import { Context } from '../Context/AuthContext';
 
 export default function Schedule(props) {
   const emailStorage = localStorage.getItem('email');
-  var resp =  typeof(emailStorage)
-  console.log("o email é", emailStorage)
+
   const { handleLogout } = useContext(Context);
-
-
-  console.log(resp)
 
   const [users, setUsers] = useState("");
 
@@ -23,28 +19,103 @@ export default function Schedule(props) {
     })();
   }, []);
 
-  console.log(users)
-
+   var userLogged = {}
 
   var Hours = {
-    six: ['disponivel', "marcao", "zanqueta","disponível", "disponível"],
-    seven: ['disponível', "marcao", "zanqueta","disponível", "disponível"],
-    eight: ['disponivel', "disponivel", "zanqueta","disponível", "disponível"],
-    nine: ['disponivel', "marcao", "zanqueta","disponível", "disponível"],
-    ten: ['disponivel', "marcao", "zanqueta","disponível", "disponível"],
-    eleven: ['disponivel', "marcao", "zanqueta","disponível", "disponível"],
-    tweny: ['marcao', "marcao", "zanqueta","disponível", "disponível"],
-    thirteen: ['disponivel', "marcao", "zanqueta","disponível", "disponível"],
-    fourtenn: ['marcao', "marcao", "zanqueta","disponível", "disponível"],
-    fifteen: ['disponivel', "marcao", "zanqueta","disponível", "disponível"],
-    sixteen: ['disponivel', "marcao", "disponivel","marcao", "disponível"],
-    seventeen: ['disponivel', "marcao", "disponivel","disponível", "disponível"],
-    eighteen: ['disponivel', "marcao", "zanqueta","disponível", "disponível"],
-    nineteen: ['disponivel', "marcao", "zanqueta","disponível", "disponível"],
-    twelve: ['disponivel', "marcao", "zanqueta","disponível", "disponível"],
-    twelveone: ['disponivel', "marcao", "zanqueta","disponível", "disponível"],
-    twelvetwo: ['disponivel', "marcao", "zanqueta","disponível", "disponível"],
-    twelvethree: ['disponivel', "marcao", "zanqueta","disponível", "disponível"]
+    six: ['disponivel','disponivel','disponivel','disponivel','disponivel'],
+    seven: ['disponivel','disponivel','disponivel','disponivel','disponivel'],
+    eight: ['disponivel','disponivel','disponivel','disponivel','disponivel'],
+    nine: ['disponivel','disponivel','disponivel','disponivel','disponivel'],
+    ten: ['disponivel','disponivel','disponivel','disponivel','disponivel'],
+    eleven: ['disponivel','disponivel','disponivel','disponivel','disponivel'],
+    twelve: ['disponivel','disponivel','disponivel','disponivel','disponivel'],
+    thirteen: ['disponivel','disponivel','disponivel','disponivel','disponivel'],
+    fourteen: ['disponivel','disponivel','disponivel','disponivel','disponivel'],
+    fifteen: ['disponivel','disponivel','disponivel','disponivel','disponivel'],
+    sixteen: ['disponivel','disponivel','disponivel','disponivel','disponivel'],
+    seventeen: ['disponivel','disponivel','disponivel','disponivel','disponivel'],
+    eighteen: ['disponivel','disponivel','disponivel','disponivel','disponivel'],
+    nineteen: ['disponivel','disponivel','disponivel','disponivel','disponivel'],
+    tweny: ['disponivel','disponivel','disponivel','disponivel','disponivel'],
+    twenyone: ['disponivel','disponivel','disponivel','disponivel','disponivel'],
+    twenytwo: ['disponivel','disponivel','disponivel','disponivel','disponivel'],
+    twenythree: ['disponivel','disponivel','disponivel','disponivel','disponivel']
+  }
+
+  for (let index = 0; index < users.length; index++) {
+    
+    if (`"${users[index].email}"` === emailStorage){
+      userLogged = users[index]
+    }    
+  }
+
+  function putOnSchedule(schedule, user){
+   
+    switch (schedule.hourSchedule) {
+      case 6:
+        Hours.six[schedule.weekDay] = user.name
+        break;
+      case 7:
+        Hours.seven[schedule.weekDay] = user.name
+        break;
+      case 8:
+        Hours.eigth[schedule.weekDay] = user.name
+        break;
+      case 9:
+        Hours.nine[schedule.weekDay] = user.name
+        break;
+      case 10:
+        Hours.ten[schedule.weekDay] = user.name
+        break;
+      case 11:
+      Hours.eleven[schedule.weekDay] = user.name
+      break;
+      case 12:
+        Hours.twelve[schedule.weekDay] = user.name
+      break;
+      case 13:
+        Hours.thirteen[schedule.weekDay] = user.name
+      break;
+      case 14:
+        Hours.fourteen[schedule.weekDay] = user.name
+      break;
+      case 15:
+        Hours.fifteen[schedule.weekDay] = user.name
+      break;
+      case 16:
+        Hours.sixteen[schedule.weekDay] = user.name
+      break;
+      case 17:
+        Hours.seventeen[schedule.weekDay] = user.name
+      break;
+      case 18:
+        Hours.eigthteen[schedule.weekDay] = user.name
+      break;
+      case 19:
+        Hours.nineteen[schedule.weekDay] = user.name
+      break;
+      case 20:
+        Hours.tweny[schedule.weekDay] = user.name
+      break;
+      case 21:
+        Hours.twenyone[schedule.weekDay] = user.name
+      break;
+      case 22:
+        Hours.twenytwo[schedule.weekDay] = user.name
+      break;
+      case 23:
+        Hours.twenythree[schedule.weekDay] = user.name
+      break;
+      default:
+        console.log(`Nao deu em nada`);
+  }
+  }
+
+  for (let i = 0; i < users.length; i++) {
+    for (let j = 0; j < users[i].schedule.length; j++) {
+      putOnSchedule(users[i].schedule[j], users[i])
+    }
+    
   }
 
   return (
@@ -55,7 +126,7 @@ export default function Schedule(props) {
             <h2>Reserva de Sala</h2>
           </div>
           <div class="col-6 d-flex justify-content-end align-items-center">
-           <label class="mr-3">Usuário: {emailStorage}</label> 
+           <label class="mr-3">Usuário: {userLogged.name}</label> 
             <button type="button" onClick={handleLogout}>Sair</button>
           </div>
         </div>
@@ -79,10 +150,10 @@ export default function Schedule(props) {
               <th scope="row">6:00</th>
               {Hours.six.map((sixHours,index)=>(
                 <td key={index}> 
-                  {sixHours === "disponível" ?
-                   <button  type="button" onClick={()=> console.log(index)}  data-toggle="modal" data-target="#exampleModal"> disponível</button> 
+                  {sixHours === "disponivel" ?
+                   <button  type="button" onClick={()=> console.log(index)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
-                   <h3>{sixHours}</h3>
+                   <label>{sixHours}</label>
                    }
                  </td>
               ))}
@@ -91,8 +162,8 @@ export default function Schedule(props) {
               <th scope="row">7:00</th>
               {Hours.seven.map((sixHours,index)=>(
                 <td key={index}> 
-                  {sixHours === "disponível" ?
-                   <button  type="button" onClick={()=> console.log(index)}  data-toggle="modal" data-target="#exampleModal"> disponível</button> 
+                  {sixHours === "disponivel" ?
+                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <h3>{sixHours}</h3>
                    }
@@ -102,71 +173,197 @@ export default function Schedule(props) {
             </tr>
             <tr>
               <th scope="row">8:00</th>
-              <td>Larry</td>
+              {Hours.eight.map((eightHours,index)=>(
+                <td key={index}> 
+                  {eightHours === "disponivel" ?
+                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   : 
+                   <label>{eightHours}</label>
+                   }
+                 </td>
+              ))}
             </tr>
             <tr>
               <th scope="row">9:00</th>
-              <td>Larry</td>
+              
+              {Hours.nine.map((nineHours,index)=>(
+                <td key={index}> 
+                  {nineHours === "disponivel" ?
+                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   : 
+                   <label>{nineHours}</label>
+                   }
+                 </td>
+              ))}
+              
             </tr>
             <tr>
               <th scope="row">10:00</th>
-              <td>Larry</td>
+              {Hours.ten.map((tenHours,index)=>(
+                <td key={index}> 
+                  {tenHours === "disponivel" ?
+                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   : 
+                   <label>{tenHours}</label>
+                   }
+                 </td>
+              ))}
             </tr>
             <tr>
               <th scope="row">11:00</th>
-              <td>Larry</td>
+              {Hours.eleven.map((elevenHours,index)=>(
+                <td key={index}> 
+                  {elevenHours === "disponivel" ?
+                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   : 
+                   <label>{elevenHours}</label>
+                   }
+                 </td>
+              ))}
             </tr>
             <tr>
               <th scope="row">12:00</th>
-              <td>Larry</td>
+              {Hours.twelve.map((twelveHours,index)=>(
+                <td key={index}> 
+                  {twelveHours === "disponivel" ?
+                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   : 
+                   <label>{twelveHours}</label>
+                   }
+                 </td>
+              ))}
             </tr>
             <tr>
               <th scope="row">13:00</th>
-              <td>Larry</td>
-            </tr>
-            <tr>
-              <th scope="row">8:00</th>
-              <td>Larry</td>
+              {Hours.thirteen.map((thirteenHours,index)=>(
+                <td key={index}> 
+                  {thirteenHours === "disponivel" ?
+                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   : 
+                   <label>{thirteenHours}</label>
+                   }
+                 </td>
+              ))}
             </tr>
             <tr>
               <th scope="row">14:00</th>
-              <td>Larry</td>
+              {Hours.fourteen.map((fourteenHours,index)=>(
+                <td key={index}> 
+                  {fourteenHours === "disponivel" ?
+                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   : 
+                   <label>{fourteenHours}</label>
+                   }
+                 </td>
+              ))}
             </tr>
             <tr>
               <th scope="row">15:00</th>
-              <td>Larry</td>
+              {Hours.fifteen.map((fifteenHours,index)=>(
+                <td key={index}> 
+                  {fifteenHours === "disponivel" ?
+                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   : 
+                   <label>{fifteenHours}</label>
+                   }
+                 </td>
+              ))}
             </tr>
             <tr>
               <th scope="row">16:00</th>
-              <td>Larry</td>
+              {Hours.sixteen.map((sixteenHours,index)=>(
+                <td key={index}> 
+                  {sixteenHours === "disponivel" ?
+                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   : 
+                   <label>{sixteenHours}</label>
+                   }
+                 </td>
+              ))}
             </tr>
             <tr>
               <th scope="row">17:00</th>
-              <td>Larry</td>
+              {Hours.seventeen.map((seventeenHours,index)=>(
+                <td key={index}> 
+                  {seventeenHours === "disponivel" ?
+                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   : 
+                   <label>{seventeenHours}</label>
+                   }
+                 </td>
+              ))}
             </tr>
             <tr>
               <th scope="row">18:00</th>
-              <td>Larry</td>
+              {Hours.eighteen.map((eighteenHours,index)=>(
+                <td key={index}> 
+                  {eighteenHours === "disponivel" ?
+                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   : 
+                   <label>{eighteenHours}</label>
+                   }
+                 </td>
+              ))}
             </tr>
             <tr>
               <th scope="row">19:00</th>
-              <td>Larry</td>
+              {Hours.nineteen.map((nineteenHours,index)=>(
+                <td key={index}> 
+                  {nineteenHours === "disponivel" ?
+                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   : 
+                   <label>{nineteenHours}</label>
+                   }
+                 </td>
+              ))}
             </tr>
             <tr>
               <th scope="row">20:00</th>
-              <td>Larry</td>
+              {Hours.tweny.map((twenyHours,index)=>(
+                <td key={index}> 
+                  {twenyHours === "disponivel" ?
+                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   : 
+                   <label>{twenyHours}</label>
+                   }
+                 </td>
+              ))}
             </tr>
             <tr>
               <th scope="row">21:00</th>
-              <td>Larry</td>
+              {Hours.twenyone.map((twenyoneHours,index)=>(
+                <td key={index}> 
+                  {twenyoneHours === "disponivel" ?
+                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   : 
+                   <label>{twenyoneHours}</label>
+                   }
+                 </td>
+              ))}
             </tr>
             <tr>
               <th scope="row">22:00</th>
-              <td>Larry</td>
+              {Hours.twenytwo.map((twenytwoHours,index)=>(
+                <td key={index}> 
+                  {twenytwoHours === "disponivel" ?
+                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   : 
+                   <label>{twenytwoHours}</label>
+                   }
+                 </td>
+              ))}
             </tr>
             <tr>
               <th scope="row">23:00</th>
-              <td>Larry</td>
+              {Hours.twenythree.map((twenythreeHours,index)=>(
+                <td key={index}> 
+                  {twenythreeHours === "disponivel" ?
+                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   : 
+                   <label>{twenythreeHours}</label>
+                   }
+                 </td>
+              ))}
             </tr>
 
           </tbody>
