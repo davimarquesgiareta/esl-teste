@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
 import api from '../api';
 import history from '../history';
+import React, { useState } from 'react';
 
 export default function Register() {
  
@@ -12,8 +12,7 @@ export default function Register() {
   async function submit (){
 
     if (password === confirmPassword && password!== '' && email !== '' && name !== ''){
-      console.log('senhas batem e email ta preenchido')
-
+    
       const response = await api.post("/auth/register", {
         name: name,
         email: email,
@@ -21,8 +20,6 @@ export default function Register() {
         confirmpassword: confirmPassword 
       }); 
 
-      console.log(response) 
-      // if response.msg === "Criado com sucesso!" -> history.push('/login')
       history.push('/login');
     }
   }

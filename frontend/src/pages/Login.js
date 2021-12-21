@@ -1,11 +1,9 @@
 import React, { useContext, useState } from 'react';
-import history from '../history';
-
 import { Context } from '../Context/AuthContext';
+import history from '../history';
 
 export default function Login() {
   const { handleLogin } = useContext(Context);
-
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
@@ -32,7 +30,6 @@ export default function Login() {
         </div>
       </div>    
     </>
-
   )
 
 }

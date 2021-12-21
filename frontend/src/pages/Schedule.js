@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
-
 import $ from "jquery"
-
 import api from '../api';
-import { Context } from '../Context/AuthContext';
 import history from '../history';
+import { Context } from '../Context/AuthContext';
 
 import './../styles/button.css'
 
@@ -12,15 +10,12 @@ export default function Schedule(props) {
   const emailStorage = localStorage.getItem('email');
 
   const { handleLogout } = useContext(Context);
-  
   const [description, setDescription] = useState("")
   const [updateDescription, setUpdateDescription] = useState("")
   const [indexDescription, setIndexDescription] = useState("")
   const [hourDescription, setHourDescription] = useState("")
   const [userData, setUserData] = useState({})
   const [scheduleData, setScheduleData] = useState({})
-  const [isLoading, setLoading] = useState(true)
-
   const [users, setUsers] = useState("");
 
   useEffect(() => {
@@ -35,8 +30,6 @@ export default function Schedule(props) {
   var hourDelete= ""
   var userValues = ""
   var scheduleDatax =""
-
-  var teste ="asdfasdf"
   
   function deleteValues(index, hour){
   indexDelete= index
@@ -44,14 +37,12 @@ export default function Schedule(props) {
   }
 
   async function deleteUser(day, hour){
-   
     var idUser = userLogged._id
     var idSchedule = ""
     for (let i = 0; i<userLogged.schedule.length ; i++) {
      if( userLogged.schedule[i].weekDay === day &&  userLogged.schedule[i].hourSchedule === hour){
        idSchedule = userLogged.schedule[i].id
      }
-      
     }
 
     const response = await api.delete(`/user/${idUser}/${idSchedule}`); 
@@ -61,15 +52,11 @@ export default function Schedule(props) {
   }
 
   function setUserValues(index, hour){
-    console.log("index", index)
-    console.log("hour", hour)
     setIndexDescription(index)
     setHourDescription(hour)
   }
 
   async function setUser(){
-    console.log(description)
-    console.log(` ${indexDescription} + ${hourDescription}`)
     var idUser = userLogged._id
     const response = await api.post(`/register/${idUser}`, {
       schedule:[
@@ -86,15 +73,10 @@ export default function Schedule(props) {
 
   }
 
- function getUserValues(index, hour){
-
-   console.log("to funçao do bagulho")
-   console.log(users)
-
+  function getUserValues(index, hour){
    for (let i = 0; i < users.length; i++) {
      for (let j = 0; j < users[i].schedule.length; j++) {
       if (users[i].schedule[j].weekDay === index && users[i].schedule[j].hourSchedule === hour ){
-        // setUserData(users[i]) 
         userValues = users[i]
         scheduleDatax = users[i].schedule[j]
         
@@ -110,16 +92,9 @@ export default function Schedule(props) {
 
   }
 
- async function updateUser(){
-   console.log(userData)
-   console.log(scheduleData)
-   console.log(updateDescription)
-
+  async function updateUser(){
    var idUser = userData._id
    var idSchedule = scheduleData.id
-
-   console.log(idUser)
-   console.log(idSchedule)
 
    const response = await api.put(`/user/${idUser}/${idSchedule}`, {
     schedule:[
@@ -131,7 +106,7 @@ export default function Schedule(props) {
   
   alert("Alterado com Sucesso!");
   document.location.reload(true)
- }
+  }
 
   var userLogged = {}
 
@@ -693,12 +668,10 @@ export default function Schedule(props) {
           <textarea class="form-control" name="description" rows="5" onChange={e => setUpdateDescription(e.target.value)} placeholder='Digite a descrição do Agendamento'>{scheduleData.description}</textarea> : 
           <h5>Descrição: {scheduleData.description} </h5>}
          
-
        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        {/* <button type="button" class="btn btn-primary"  data-dismiss="modal" ></button> */}
         {userLogged.name === userData.name ?
           <button type="button" class="btn btn-primary" onClick={()=> updateUser()}  data-dismiss="modal" >Salvar</button>  : 
           ''}

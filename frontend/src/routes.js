@@ -4,7 +4,6 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { Context } from './Context/AuthContext';
 
 import Login from './pages/Login';
-import Users from './pages/Users';
 import Schedule from './pages/Schedule';
 import Register from './pages/Register';
 
@@ -29,8 +28,6 @@ export default function Routes() {
       <CustomRoute exact path="/login" component={Login} />
       <CustomRoute isPrivate exact path="/schedules" component={Schedule} />
       <CustomRoute exact path="/register" component={Register} />
-      <CustomRoute isPrivate exact path="/users" component={Users} />
-      
     </Switch>
   );
 }
