@@ -265,7 +265,7 @@ export default function Schedule(props) {
                   {sevenHours === "disponivel" ?
                    <button  type="button" onClick={()=> setUserValues(index, 7)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
-                   <h3>{sevenHours}</h3>
+                   <label style={{cursor:"pointer"}} onClick={()=> getUserValues(index, 7) } >{sevenHours}</label>
                    }
                    {
                      sevenHours === userLogged.name ? 
@@ -286,7 +286,7 @@ export default function Schedule(props) {
                   {eightHours === "disponivel" ?
                    <button  type="button" onClick={()=> setUserValues(index, 8)} data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
-                   <label>{eightHours}</label>
+                   <label style={{cursor:"pointer"}} onClick={()=> getUserValues(index, 8) } >{eightHours}</label>
                    }
                    {
                      eightHours === userLogged.name ? 
@@ -307,7 +307,7 @@ export default function Schedule(props) {
                   {nineHours === "disponivel" ?
                    <button  type="button" onClick={()=> setUserValues(index, 9)} data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
-                   <label>{nineHours}</label>
+                   <label style={{cursor:"pointer"}} onClick={()=> getUserValues(index, 9) } >{nineHours}</label>
                    }
                    {
                      nineHours === userLogged.name ? 
@@ -328,7 +328,7 @@ export default function Schedule(props) {
                   {tenHours === "disponivel" ?
                    <button  type="button" onClick={()=> setUserValues(index, 10)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
-                   <label>{tenHours}</label>
+                   <label style={{cursor:"pointer"}} onClick={()=> getUserValues(index, 10) } >{tenHours}</label>
                    }
                    {
                      tenHours === userLogged.name ? 
@@ -348,7 +348,7 @@ export default function Schedule(props) {
                   {elevenHours === "disponivel" ?
                    <button  type="button" onClick={()=> setUserValues(index, 11)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
-                   <label>{elevenHours}</label>
+                   <label style={{cursor:"pointer"}} onClick={()=> getUserValues(index, 11) } >{elevenHours}</label>
                    }
                    {
                      elevenHours === userLogged.name ? 
@@ -368,7 +368,7 @@ export default function Schedule(props) {
                   {twelveHours === "disponivel" ?
                    <button  type="button" onClick={()=> setUserValues(index, 12)} data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
-                   <label>{twelveHours}</label>
+                   <label style={{cursor:"pointer"}} onClick={()=> getUserValues(index, 12) } >{twelveHours}</label>
                    }
                    {
                      twelveHours === userLogged.name ? 
@@ -388,7 +388,7 @@ export default function Schedule(props) {
                   {thirteenHours === "disponivel" ?
                    <button  type="button" onClick={()=> setUserValues(index, 13)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
-                   <label>{thirteenHours}</label>
+                   <label style={{cursor:"pointer"}} onClick={()=> getUserValues(index, 13) } >{thirteenHours}</label>
                    }
                    {
                      thirteenHours === userLogged.name ? 
@@ -408,7 +408,7 @@ export default function Schedule(props) {
                   {fourteenHours === "disponivel" ?
                    <button  type="button" onClick={()=> setUserValues(index, 14)} data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
-                   <label>{fourteenHours}</label>
+                   <label style={{cursor:"pointer"}} onClick={()=> getUserValues(index, 14) } >{fourteenHours}</label>
                    }
                    {
                      fourteenHours === userLogged.name ? 
@@ -428,7 +428,7 @@ export default function Schedule(props) {
                   {fifteenHours === "disponivel" ?
                    <button  type="button" onClick={()=> setUserValues(index, 15)} data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
-                   <label>{fifteenHours}</label>
+                   <label style={{cursor:"pointer"}} onClick={()=> getUserValues(index, 15) } >{fifteenHours}</label>
                    }
                    {
                      fifteenHours === userLogged.name ? 
@@ -448,7 +448,7 @@ export default function Schedule(props) {
                   {sixteenHours === "disponivel" ?
                    <button  type="button" onClick={()=> setUserValues(index, 16)} data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
-                   <label>{sixteenHours}</label>
+                   <label style={{cursor:"pointer"}} onClick={()=> getUserValues(index, 16) } >{sixteenHours}</label>
                    }
                    {
                      sixteenHours === userLogged.name ? 
@@ -468,7 +468,7 @@ export default function Schedule(props) {
                   {seventeenHours === "disponivel" ?
                    <button  type="button" onClick={()=> setUserValues(index, 17)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
-                   <label>{seventeenHours}</label>
+                   <label style={{cursor:"pointer"}} onClick={()=> getUserValues(index, 17) } >{seventeenHours}</label>
                    }
                    {
                      seventeenHours === userLogged.name ? 
@@ -488,7 +488,7 @@ export default function Schedule(props) {
                   {eighteenHours === "disponivel" ?
                    <button  type="button" onClick={()=> setUserValues(index, 18)} data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
-                   <label>{eighteenHours}</label>
+                   <label style={{cursor:"pointer"}} onClick={()=> getUserValues(index, 6) } >{eighteenHours}</label>
                    }
                    {
                      eighteenHours === userLogged.name ? 
@@ -508,7 +508,7 @@ export default function Schedule(props) {
                   {nineteenHours === "disponivel" ?
                    <button  type="button" onClick={()=> setUserValues(index, 19)} data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
-                   <label>{nineteenHours}</label>
+                   <label style={{cursor:"pointer"}} onClick={()=> getUserValues(index, 6) } >{nineteenHours}</label>
                    }
                    {
                      nineteenHours === userLogged.name ? 
@@ -528,7 +528,7 @@ export default function Schedule(props) {
                   {twenyHours === "disponivel" ?
                    <button  type="button" onClick={()=> setUserValues(index, 20)} data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
-                   <label>{twenyHours}</label>
+                   <label style={{cursor:"pointer"}} onClick={()=> getUserValues(index, 20) } >{twenyHours}</label>
                    }
                    {
                      twenyHours === userLogged.name ? 
@@ -549,7 +549,7 @@ export default function Schedule(props) {
                   {twenyoneHours === "disponivel" ?
                    <button  type="button" onClick={()=> setUserValues(index, 21)} data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
-                   <label>{twenyoneHours}</label>
+                   <label style={{cursor:"pointer"}} onClick={()=> getUserValues(index, 21) } >{twenyoneHours}</label>
                    }
                    {
                      twenyoneHours === userLogged.name ? 
@@ -569,7 +569,7 @@ export default function Schedule(props) {
                   {twenytwoHours === "disponivel" ?
                    <button  type="button" onClick={()=> setUserValues(index, 22)} data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
-                   <label>{twenytwoHours}</label>
+                   <label style={{cursor:"pointer"}} onClick={()=> getUserValues(index, 22) } >{twenytwoHours}</label>
                    }
                    {
                      twenytwoHours === userLogged.name ? 
@@ -589,7 +589,7 @@ export default function Schedule(props) {
                   {twenythreeHours === "disponivel" ?
                    <button  type="button" onClick={()=> setUserValues(index, 23)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
-                   <label>{twenythreeHours}</label>
+                   <label style={{cursor:"pointer"}} onClick={()=> getUserValues(index, 23) } >{twenythreeHours}</label>
                    }
                    {
                      twenythreeHours === userLogged.name ? 
@@ -657,13 +657,10 @@ export default function Schedule(props) {
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Deletar o Agendamento</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Detalhes do Usuário</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
-      <div class="modal-body">
-       <h3>Detalhes do Usuário</h3>
       </div>
       <div class="modal-body">
        <div>
