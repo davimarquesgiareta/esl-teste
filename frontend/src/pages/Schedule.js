@@ -209,21 +209,21 @@ export default function Schedule(props) {
 
   return (
     <>
-      <div class="container mb-5">
-        <div class="row">
-          <div class="col-6">
+      <div className="container mb-5">
+        <div className="row">
+          <div className="col-6">
             <h2>Reserva de Sala</h2>
           </div>
-          <div class="col-6 d-flex justify-content-end align-items-center">
-           <label class="mr-3">Usuário: {userLogged.name}</label> 
+          <div className="col-6 d-flex justify-content-end align-items-center">
+           <label className="mr-3">Usuário: {userLogged.name}</label> 
             <button type="button" onClick={handleLogout}>Sair</button>
           </div>
         </div>
       </div>
 
-      <div class="container">
-        <div class="table-responsive" style={{fontSize:"3vh"}}>
-          <table class="table-striped" style={{width:"100%"}}>
+      <div className="container">
+        <div className="table-responsive" style={{fontSize:"3vh"}}>
+          <table className="table-striped" style={{width:"100%"}}>
           <thead>
             <tr>
               <th scope="col">Horário</th>
@@ -247,7 +247,7 @@ export default function Schedule(props) {
                    {
                      sixHours === userLogged.name ? 
                      <button className="button ml-1" onClick={()=> deleteValues(index, 6)}  data-toggle="modal" data-target="#exampleModal2">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
                        </svg>
                      </button> : ''
@@ -267,7 +267,7 @@ export default function Schedule(props) {
                    {
                      sevenHours === userLogged.name ? 
                      <button className="button ml-1" onClick={()=> deleteValues(index, 7)}  data-toggle="modal" data-target="#exampleModal2">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
                        </svg>
                      </button> : ''
@@ -288,7 +288,7 @@ export default function Schedule(props) {
                    {
                      eightHours === userLogged.name ? 
                      <button className="button ml-1" onClick={()=> deleteValues(index, 8)}  data-toggle="modal" data-target="#exampleModal2">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
                        </svg>
                      </button> : ''
@@ -309,7 +309,7 @@ export default function Schedule(props) {
                    {
                      nineHours === userLogged.name ? 
                      <button className="button ml-1" onClick={()=> deleteValues(index, 9)}  data-toggle="modal" data-target="#exampleModal2">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
                        </svg>
                      </button> : ''
@@ -330,7 +330,7 @@ export default function Schedule(props) {
                    {
                      tenHours === userLogged.name ? 
                      <button className="button ml-1" onClick={()=> deleteValues(index, 10)}  data-toggle="modal" data-target="#exampleModal2">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
                        </svg>
                      </button> : ''
@@ -350,7 +350,7 @@ export default function Schedule(props) {
                    {
                      elevenHours === userLogged.name ? 
                      <button className="button ml-1" onClick={()=> deleteValues(index, 11)}  data-toggle="modal" data-target="#exampleModal2">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
                        </svg>
                      </button> : ''
@@ -370,7 +370,7 @@ export default function Schedule(props) {
                    {
                      twelveHours === userLogged.name ? 
                      <button className="button ml-1" onClick={()=> deleteValues(index, 12)}  data-toggle="modal" data-target="#exampleModal2">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
                        </svg>
                      </button> : ''
@@ -390,7 +390,7 @@ export default function Schedule(props) {
                    {
                      thirteenHours === userLogged.name ? 
                      <button className="button ml-1" onClick={()=> deleteValues(index, 13)}  data-toggle="modal" data-target="#exampleModal2">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
                        </svg>
                      </button> : ''
@@ -410,7 +410,7 @@ export default function Schedule(props) {
                    {
                      fourteenHours === userLogged.name ? 
                      <button className="button ml-1" onClick={()=> deleteValues(index, 14)}  data-toggle="modal" data-target="#exampleModal2">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
                        </svg>
                      </button> : ''
@@ -430,7 +430,7 @@ export default function Schedule(props) {
                    {
                      fifteenHours === userLogged.name ? 
                      <button className="button ml-1" onClick={()=> deleteValues(index, 15)}  data-toggle="modal" data-target="#exampleModal2">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
                        </svg>
                      </button> : ''
@@ -450,7 +450,7 @@ export default function Schedule(props) {
                    {
                      sixteenHours === userLogged.name ? 
                      <button className="button ml-1" onClick={()=> deleteValues(index, 16)}  data-toggle="modal" data-target="#exampleModal2">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
                        </svg>
                      </button> : ''
@@ -470,7 +470,7 @@ export default function Schedule(props) {
                    {
                      seventeenHours === userLogged.name ? 
                      <button className="button ml-1" onClick={()=> deleteValues(index, 17)}  data-toggle="modal" data-target="#exampleModal2">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
                        </svg>
                      </button> : ''
@@ -490,7 +490,7 @@ export default function Schedule(props) {
                    {
                      eighteenHours === userLogged.name ? 
                      <button className="button ml-1" onClick={()=> deleteValues(index, 18)}  data-toggle="modal" data-target="#exampleModal2">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
                        </svg>
                      </button> : ''
@@ -510,7 +510,7 @@ export default function Schedule(props) {
                    {
                      nineteenHours === userLogged.name ? 
                      <button className="button ml-1" onClick={()=> deleteValues(index, 20)}  data-toggle="modal" data-target="#exampleModal2">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
                        </svg>
                      </button> : ''
@@ -530,7 +530,7 @@ export default function Schedule(props) {
                    {
                      twenyHours === userLogged.name ? 
                      <button className="button ml-1" onClick={()=> deleteValues(index, 20)}  data-toggle="modal" data-target="#exampleModal2">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
                        </svg>
                      </button> : ''
@@ -551,7 +551,7 @@ export default function Schedule(props) {
                    {
                      twenyoneHours === userLogged.name ? 
                      <button className="button ml-1" onClick={()=> deleteValues(index, 21)}  data-toggle="modal" data-target="#exampleModal2">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
                        </svg>
                      </button> : ''
@@ -571,7 +571,7 @@ export default function Schedule(props) {
                    {
                      twenytwoHours === userLogged.name ? 
                      <button className="button ml-1" onClick={()=> deleteValues(index, 22)}  data-toggle="modal" data-target="#exampleModal2">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
                        </svg>
                      </button> : ''
@@ -591,7 +591,7 @@ export default function Schedule(props) {
                    {
                      twenythreeHours === userLogged.name ? 
                      <button className="button ml-1" onClick={()=> deleteValues(index, 23)}  data-toggle="modal" data-target="#exampleModal2">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
                        </svg>
                      </button> : ''
@@ -607,73 +607,71 @@ export default function Schedule(props) {
 
 <br/>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Cadastrar Agendamento</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog" role="document">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel">Cadastrar Agendamento</h5>
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-      <textarea class="form-control" name="description" rows="5" onChange={e => setDescription(e.target.value)} placeholder='Digite a descrição do Agendamento'></textarea>
+      <div className="modal-body">
+      <textarea className="form-control" name="description" rows="5" onChange={e => setDescription(e.target.value)} placeholder='Digite a descrição do Agendamento'></textarea>
 
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onClick={()=> setUser()}>Salvar Agendamento</button>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={()=> setUser()}>Salvar Agendamento</button>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Deletar o Agendamento</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<div className="modal fade" id="exampleModal2" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div className="modal-dialog" role="document">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel">Deletar o Agendamento</h5>
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div className="modal-body">
        <h3>Deseja mesmo deletar?</h3>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary"  data-dismiss="modal" onClick={()=> deleteUser(indexDelete, hourDelete)}>Deletar</button>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" className="btn btn-primary"  data-dismiss="modal" onClick={()=> deleteUser(indexDelete, hourDelete)}>Deletar</button>
       </div>
     </div>
   </div>
 </div>
 
-
-
- <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel3" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Detalhes do Usuário</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+ <div className="modal fade" id="exampleModal3" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+  <div className="modal-dialog" role="document">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel">Detalhes do Usuário</h5>
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div className="modal-body">
        <div>
          <h5>Professor: {userData.name}</h5>
          <h5>Data da reserva: {scheduleData.date}</h5>
          <h5>Hora da reserva: {scheduleData.hour} </h5>
          {userLogged.name === userData.name ?
-          <textarea class="form-control" name="description" rows="5" onChange={e => setUpdateDescription(e.target.value)} placeholder='Digite a descrição do Agendamento'>{scheduleData.description}</textarea> : 
+          <textarea className="form-control" name="description" rows="5" onChange={e => setUpdateDescription(e.target.value)} placeholder='Digite a descrição do Agendamento'>{scheduleData.description}</textarea> : 
           <h5>Descrição: {scheduleData.description} </h5>}
          
        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-dismiss="modal">Fechar</button>
         {userLogged.name === userData.name ?
-          <button type="button" class="btn btn-primary" onClick={()=> updateUser()}  data-dismiss="modal" >Salvar</button>  : 
+          <button type="button" className="btn btn-primary" onClick={()=> updateUser()}  data-dismiss="modal" >Salvar</button>  : 
           ''}
       </div>
     </div>
