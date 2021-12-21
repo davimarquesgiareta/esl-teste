@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 
+import $ from "jquery"
+
 import api from '../api';
 import { Context } from '../Context/AuthContext';
 import history from '../history';
@@ -14,6 +16,9 @@ export default function Schedule(props) {
   const [description, setDescription] = useState("")
   const [indexDescription, setIndexDescription] = useState("")
   const [hourDescription, setHourDescription] = useState("")
+  const [userData, setUserData] = useState({})
+  const [scheduleData, setScheduleData] = useState({})
+  const [isLoading, setLoading] = useState(true)
 
   const [users, setUsers] = useState("");
 
@@ -27,9 +32,11 @@ export default function Schedule(props) {
 
   var indexDelete = ""
   var hourDelete= ""
-  var setIndex = ""
-  var setHour= ""
+  var userValues = ""
+  var scheduleDatax =""
 
+  var teste ="asdfasdf"
+  
   function deleteValues(index, hour){
   indexDelete= index
   hourDelete= hour
@@ -59,7 +66,6 @@ export default function Schedule(props) {
     setHourDescription(hour)
   }
 
-  
   async function setUser(){
     console.log(description)
     console.log(` ${indexDescription} + ${hourDescription}`)
@@ -78,6 +84,32 @@ export default function Schedule(props) {
     document.location.reload(true)
 
   }
+
+ function getUserValues(index, hour){
+
+   console.log("to funçao do bagulho")
+   console.log(users)
+
+   for (let i = 0; i < users.length; i++) {
+     for (let j = 0; j < users[i].schedule.length; j++) {
+      if (users[i].schedule[j].weekDay === index && users[i].schedule[j].hourSchedule === hour ){
+        // setUserData(users[i]) 
+        userValues = users[i]
+        scheduleDatax = users[i].schedule[j]
+        
+      }
+        setUserData(userValues)
+        setScheduleData(scheduleDatax)
+     }  
+   }
+   
+   
+   window.$('#exampleModal3').modal();
+  
+
+  }
+
+
 
   var userLogged = {}
 
@@ -213,8 +245,8 @@ export default function Schedule(props) {
                   {sixHours === "disponivel" ?
                    <button  type="button" onClick={()=> setUserValues(index, 6)} data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
-                   <label>{sixHours}</label>
-                   }
+                   <label style={{cursor:"pointer"}} onClick={()=> getUserValues(index, 6) } >{sixHours}</label>
+                   } 
                    {
                      sixHours === userLogged.name ? 
                      <button className="button ml-1" onClick={()=> deleteValues(index, 6)}  data-toggle="modal" data-target="#exampleModal2">
@@ -599,8 +631,6 @@ export default function Schedule(props) {
   </div>
 </div>
 
-
-
 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -620,6 +650,39 @@ export default function Schedule(props) {
     </div>
   </div>
 </div>
+
+
+
+ <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Deletar o Agendamento</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <h3>Detalhes do Usuário</h3>
+      </div>
+      <div class="modal-body">
+       <div>
+         <h5>Professor: {userData.name}</h5>
+         <h5>Data da reserva: {scheduleData.date}</h5>
+         <h5>Hora da reserva: {scheduleData.hour} </h5>
+         <h5>Descrição: {scheduleData.description} </h5>
+
+       </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        {/* <button type="button" class="btn btn-primary"  data-dismiss="modal" ></button> */}
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
     </>
   );
