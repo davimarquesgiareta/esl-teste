@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 
 import api from '../api';
 import { Context } from '../Context/AuthContext';
+import history from '../history';
 
 import './../styles/button.css'
 
@@ -47,6 +48,8 @@ export default function Schedule(props) {
 
     const response = await api.delete(`/user/${idUser}/${idSchedule}`); 
 
+    alert("Deletado com Sucesso!");
+    document.location.reload(true)
   }
 
   function setUserValues(index, hour){
@@ -70,8 +73,9 @@ export default function Schedule(props) {
         }
       ]
     }); 
-
-    console.log(response)
+    
+    alert("Agendado com Sucesso!");
+    document.location.reload(true)
 
   }
 
@@ -589,7 +593,7 @@ export default function Schedule(props) {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary" onClick={()=> setUser()}>Salvar Agendamento</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onClick={()=> setUser()}>Salvar Agendamento</button>
       </div>
     </div>
   </div>
@@ -611,7 +615,7 @@ export default function Schedule(props) {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary" onClick={()=> deleteUser(indexDelete, hourDelete)}>Deletar</button>
+        <button type="button" class="btn btn-primary"  data-dismiss="modal" onClick={()=> deleteUser(indexDelete, hourDelete)}>Deletar</button>
       </div>
     </div>
   </div>
