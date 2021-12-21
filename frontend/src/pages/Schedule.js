@@ -14,6 +14,7 @@ export default function Schedule(props) {
   const { handleLogout } = useContext(Context);
   
   const [description, setDescription] = useState("")
+  const [updateDescription, setUpdateDescription] = useState("")
   const [indexDescription, setIndexDescription] = useState("")
   const [hourDescription, setHourDescription] = useState("")
   const [userData, setUserData] = useState({})
@@ -70,7 +71,7 @@ export default function Schedule(props) {
     console.log(description)
     console.log(` ${indexDescription} + ${hourDescription}`)
     var idUser = userLogged._id
-    const response = await api.put(`/register/${idUser}`, {
+    const response = await api.post(`/register/${idUser}`, {
       schedule:[
         {
           description: description,
@@ -109,7 +110,28 @@ export default function Schedule(props) {
 
   }
 
+ async function updateUser(){
+   console.log(userData)
+   console.log(scheduleData)
+   console.log(updateDescription)
 
+   var idUser = userData._id
+   var idSchedule = scheduleData.id
+
+   console.log(idUser)
+   console.log(idSchedule)
+
+   const response = await api.put(`/user/${idUser}/${idSchedule}`, {
+    schedule:[
+      {
+        description: updateDescription
+      }
+    ]
+  }); 
+  
+  alert("Alterado com Sucesso!");
+  document.location.reload(true)
+ }
 
   var userLogged = {}
 
@@ -667,13 +689,19 @@ export default function Schedule(props) {
          <h5>Professor: {userData.name}</h5>
          <h5>Data da reserva: {scheduleData.date}</h5>
          <h5>Hora da reserva: {scheduleData.hour} </h5>
-         <h5>Descrição: {scheduleData.description} </h5>
+         {userLogged.name === userData.name ?
+          <textarea class="form-control" name="description" rows="5" onChange={e => setUpdateDescription(e.target.value)} placeholder='Digite a descrição do Agendamento'>{scheduleData.description}</textarea> : 
+          <h5>Descrição: {scheduleData.description} </h5>}
+         
 
        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
         {/* <button type="button" class="btn btn-primary"  data-dismiss="modal" ></button> */}
+        {userLogged.name === userData.name ?
+          <button type="button" class="btn btn-primary" onClick={()=> updateUser()}  data-dismiss="modal" >Salvar</button>  : 
+          ''}
       </div>
     </div>
   </div>

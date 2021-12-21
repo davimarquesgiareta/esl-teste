@@ -64,6 +64,33 @@ app.get("/user/:id/:idescription",checkToken , async (request, response)=>{
   
 })
 
+// Update a Schedule
+app.put("/user/:id/:idescription", checkToken, async (request, response)=>{
+ 
+  const id = request.params.id
+  const { schedule } = request.body
+  const idescription = request.params.idescription
+
+  const user = await User.findById(id, '-password')
+
+  var filteredOtherSchedules = user.schedule.filter((value)=>{ return value.id !== idescription });
+  var filteredThisSchedules = user.schedule.filter((value)=>{ return value.id === idescription });
+
+  filteredOtherSchedules.push({
+    id: filteredThisSchedules[0].id,
+    date: filteredThisSchedules[0].date,
+    description: schedule[0].description,
+    weekDay: filteredThisSchedules[0].weekDay,
+    hourSchedule: filteredThisSchedules[0].hourSchedule
+  })
+  
+  const updateWithDeletedUser = await User.updateOne({_id:id}, { $set:{schedule: filteredOtherSchedules}})
+
+  return response.status(200).json({updateWithDeletedUser })
+  
+})
+
+
 // Delete a Schedule
 app.delete("/user/:id/:idescription", checkToken, async (request, response)=>{
  
@@ -89,7 +116,7 @@ app.get("/schedule",checkToken ,async(request, response)=>{
 
 // REgister a Schedule
 
-app.put("/register/:id", checkToken, async (request, response)=>{
+app.post("/register/:id", checkToken, async (request, response)=>{
   const { id } = request.params
   const { schedule } = request.body
 
