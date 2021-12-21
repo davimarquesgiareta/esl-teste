@@ -9,6 +9,10 @@ export default function Schedule(props) {
   const emailStorage = localStorage.getItem('email');
 
   const { handleLogout } = useContext(Context);
+  
+  const [description, setDescription] = useState("")
+  const [indexDescription, setIndexDescription] = useState("")
+  const [hourDescription, setHourDescription] = useState("")
 
   const [users, setUsers] = useState("");
 
@@ -22,6 +26,8 @@ export default function Schedule(props) {
 
   var indexDelete = ""
   var hourDelete= ""
+  var setIndex = ""
+  var setHour= ""
 
   function deleteValues(index, hour){
   indexDelete= index
@@ -43,7 +49,33 @@ export default function Schedule(props) {
 
   }
 
-   var userLogged = {}
+  function setUserValues(index, hour){
+    console.log("index", index)
+    console.log("hour", hour)
+    setIndexDescription(index)
+    setHourDescription(hour)
+  }
+
+  
+  async function setUser(){
+    console.log(description)
+    console.log(` ${indexDescription} + ${hourDescription}`)
+    var idUser = userLogged._id
+    const response = await api.put(`/register/${idUser}`, {
+      schedule:[
+        {
+          description: description,
+          weekDay: indexDescription ,
+          hourSchedule: hourDescription 
+        }
+      ]
+    }); 
+
+    console.log(response)
+
+  }
+
+  var userLogged = {}
 
   var Hours = {
     six: ['disponivel','disponivel','disponivel','disponivel','disponivel'],
@@ -175,7 +207,7 @@ export default function Schedule(props) {
               {Hours.six.map((sixHours,index)=>(
                 <td key={index}> 
                   {sixHours === "disponivel" ?
-                   <button  type="button" onClick={()=> console.log(index)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   <button  type="button" onClick={()=> setUserValues(index, 6)} data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <label>{sixHours}</label>
                    }
@@ -195,7 +227,7 @@ export default function Schedule(props) {
               {Hours.seven.map((sevenHours,index)=>(
                 <td key={index}> 
                   {sevenHours === "disponivel" ?
-                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   <button  type="button" onClick={()=> setUserValues(index, 7)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <h3>{sevenHours}</h3>
                    }
@@ -216,7 +248,7 @@ export default function Schedule(props) {
               {Hours.eight.map((eightHours,index)=>(
                 <td key={index}> 
                   {eightHours === "disponivel" ?
-                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   <button  type="button" onClick={()=> setUserValues(index, 8)} data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <label>{eightHours}</label>
                    }
@@ -237,13 +269,13 @@ export default function Schedule(props) {
               {Hours.nine.map((nineHours,index)=>(
                 <td key={index}> 
                   {nineHours === "disponivel" ?
-                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   <button  type="button" onClick={()=> setUserValues(index, 9)} data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <label>{nineHours}</label>
                    }
                    {
                      nineHours === userLogged.name ? 
-                     <button className="button ml-1" onClick={()=> deleteValues(index, 20)}  data-toggle="modal" data-target="#exampleModal2">
+                     <button className="button ml-1" onClick={()=> deleteValues(index, 9)}  data-toggle="modal" data-target="#exampleModal2">
                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
                        </svg>
@@ -258,7 +290,7 @@ export default function Schedule(props) {
               {Hours.ten.map((tenHours,index)=>(
                 <td key={index}> 
                   {tenHours === "disponivel" ?
-                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   <button  type="button" onClick={()=> setUserValues(index, 10)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <label>{tenHours}</label>
                    }
@@ -278,7 +310,7 @@ export default function Schedule(props) {
               {Hours.eleven.map((elevenHours,index)=>(
                 <td key={index}> 
                   {elevenHours === "disponivel" ?
-                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   <button  type="button" onClick={()=> setUserValues(index, 11)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <label>{elevenHours}</label>
                    }
@@ -298,7 +330,7 @@ export default function Schedule(props) {
               {Hours.twelve.map((twelveHours,index)=>(
                 <td key={index}> 
                   {twelveHours === "disponivel" ?
-                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   <button  type="button" onClick={()=> setUserValues(index, 12)} data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <label>{twelveHours}</label>
                    }
@@ -318,7 +350,7 @@ export default function Schedule(props) {
               {Hours.thirteen.map((thirteenHours,index)=>(
                 <td key={index}> 
                   {thirteenHours === "disponivel" ?
-                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   <button  type="button" onClick={()=> setUserValues(index, 13)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <label>{thirteenHours}</label>
                    }
@@ -338,7 +370,7 @@ export default function Schedule(props) {
               {Hours.fourteen.map((fourteenHours,index)=>(
                 <td key={index}> 
                   {fourteenHours === "disponivel" ?
-                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   <button  type="button" onClick={()=> setUserValues(index, 14)} data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <label>{fourteenHours}</label>
                    }
@@ -358,7 +390,7 @@ export default function Schedule(props) {
               {Hours.fifteen.map((fifteenHours,index)=>(
                 <td key={index}> 
                   {fifteenHours === "disponivel" ?
-                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   <button  type="button" onClick={()=> setUserValues(index, 15)} data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <label>{fifteenHours}</label>
                    }
@@ -378,7 +410,7 @@ export default function Schedule(props) {
               {Hours.sixteen.map((sixteenHours,index)=>(
                 <td key={index}> 
                   {sixteenHours === "disponivel" ?
-                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   <button  type="button" onClick={()=> setUserValues(index, 16)} data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <label>{sixteenHours}</label>
                    }
@@ -398,7 +430,7 @@ export default function Schedule(props) {
               {Hours.seventeen.map((seventeenHours,index)=>(
                 <td key={index}> 
                   {seventeenHours === "disponivel" ?
-                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   <button  type="button" onClick={()=> setUserValues(index, 17)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <label>{seventeenHours}</label>
                    }
@@ -418,7 +450,7 @@ export default function Schedule(props) {
               {Hours.eighteen.map((eighteenHours,index)=>(
                 <td key={index}> 
                   {eighteenHours === "disponivel" ?
-                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   <button  type="button" onClick={()=> setUserValues(index, 18)} data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <label>{eighteenHours}</label>
                    }
@@ -438,7 +470,7 @@ export default function Schedule(props) {
               {Hours.nineteen.map((nineteenHours,index)=>(
                 <td key={index}> 
                   {nineteenHours === "disponivel" ?
-                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   <button  type="button" onClick={()=> setUserValues(index, 19)} data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <label>{nineteenHours}</label>
                    }
@@ -458,7 +490,7 @@ export default function Schedule(props) {
               {Hours.tweny.map((twenyHours,index)=>(
                 <td key={index}> 
                   {twenyHours === "disponivel" ?
-                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   <button  type="button" onClick={()=> setUserValues(index, 20)} data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <label>{twenyHours}</label>
                    }
@@ -479,7 +511,7 @@ export default function Schedule(props) {
               {Hours.twenyone.map((twenyoneHours,index)=>(
                 <td key={index}> 
                   {twenyoneHours === "disponivel" ?
-                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   <button  type="button" onClick={()=> setUserValues(index, 21)} data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <label>{twenyoneHours}</label>
                    }
@@ -499,7 +531,7 @@ export default function Schedule(props) {
               {Hours.twenytwo.map((twenytwoHours,index)=>(
                 <td key={index}> 
                   {twenytwoHours === "disponivel" ?
-                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   <button  type="button" onClick={()=> setUserValues(index, 22)} data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <label>{twenytwoHours}</label>
                    }
@@ -519,7 +551,7 @@ export default function Schedule(props) {
               {Hours.twenythree.map((twenythreeHours,index)=>(
                 <td key={index}> 
                   {twenythreeHours === "disponivel" ?
-                   <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
+                   <button  type="button" onClick={()=> setUserValues(index, 23)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <label>{twenythreeHours}</label>
                    }
@@ -552,12 +584,12 @@ export default function Schedule(props) {
         </button>
       </div>
       <div class="modal-body">
-      <textarea class="form-control" name="description" rows="5" placeholder='Digite a descrição do Agendamento'></textarea>
+      <textarea class="form-control" name="description" rows="5" onChange={e => setDescription(e.target.value)} placeholder='Digite a descrição do Agendamento'></textarea>
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary">Salvar Agendamento</button>
+        <button type="button" class="btn btn-primary" onClick={()=> setUser()}>Salvar Agendamento</button>
       </div>
     </div>
   </div>
