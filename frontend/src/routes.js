@@ -25,6 +25,7 @@ function CustomRoute({ isPrivate, ...rest }) {
 export default function Routes() {
   return (
     <Switch>
+      <CustomRoute exact path="/" component={Login} />
       <CustomRoute exact path="/login" component={Login} />
       <CustomRoute isPrivate exact path="/schedules" component={Schedule} />
       <CustomRoute exact path="/register" component={Register} />

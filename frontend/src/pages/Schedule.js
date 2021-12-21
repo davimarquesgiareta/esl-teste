@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import api from '../api';
 import { Context } from '../Context/AuthContext';
 
+import './../styles/button.css'
 
 export default function Schedule(props) {
   const emailStorage = localStorage.getItem('email');
@@ -18,6 +19,29 @@ export default function Schedule(props) {
       setUsers(data);
     })();
   }, []);
+
+  var indexDelete = ""
+  var hourDelete= ""
+
+  function deleteValues(index, hour){
+  indexDelete= index
+  hourDelete= hour
+  }
+
+  async function deleteUser(day, hour){
+   
+    var idUser = userLogged._id
+    var idSchedule = ""
+    for (let i = 0; i<userLogged.schedule.length ; i++) {
+     if( userLogged.schedule[i].weekDay === day &&  userLogged.schedule[i].hourSchedule === hour){
+       idSchedule = userLogged.schedule[i].id
+     }
+      
+    }
+
+    const response = await api.delete(`/user/${idUser}/${idSchedule}`); 
+
+  }
 
    var userLogged = {}
 
@@ -107,7 +131,7 @@ export default function Schedule(props) {
         Hours.twenythree[schedule.weekDay] = user.name
       break;
       default:
-        console.log(`Nao deu em nada`);
+        console.log(`Horário não existe`);
   }
   }
 
@@ -155,17 +179,33 @@ export default function Schedule(props) {
                    : 
                    <label>{sixHours}</label>
                    }
+                   {
+                     sixHours === userLogged.name ? 
+                     <button className="button ml-1" onClick={()=> deleteValues(index, 6)}  data-toggle="modal" data-target="#exampleModal2">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                       </svg>
+                     </button> : ''
+                   }
                  </td>
               ))}
             </tr>
             <tr>
               <th scope="row">7:00</th>
-              {Hours.seven.map((sixHours,index)=>(
+              {Hours.seven.map((sevenHours,index)=>(
                 <td key={index}> 
-                  {sixHours === "disponivel" ?
+                  {sevenHours === "disponivel" ?
                    <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
-                   <h3>{sixHours}</h3>
+                   <h3>{sevenHours}</h3>
+                   }
+                   {
+                     sevenHours === userLogged.name ? 
+                     <button className="button ml-1" onClick={()=> deleteValues(index, 7)}  data-toggle="modal" data-target="#exampleModal2">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                       </svg>
+                     </button> : ''
                    }
                  </td>
               ))}
@@ -180,6 +220,14 @@ export default function Schedule(props) {
                    : 
                    <label>{eightHours}</label>
                    }
+                   {
+                     eightHours === userLogged.name ? 
+                     <button className="button ml-1" onClick={()=> deleteValues(index, 8)}  data-toggle="modal" data-target="#exampleModal2">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                       </svg>
+                     </button> : ''
+                   }
                  </td>
               ))}
             </tr>
@@ -192,6 +240,14 @@ export default function Schedule(props) {
                    <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <label>{nineHours}</label>
+                   }
+                   {
+                     nineHours === userLogged.name ? 
+                     <button className="button ml-1" onClick={()=> deleteValues(index, 20)}  data-toggle="modal" data-target="#exampleModal2">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                       </svg>
+                     </button> : ''
                    }
                  </td>
               ))}
@@ -206,6 +262,14 @@ export default function Schedule(props) {
                    : 
                    <label>{tenHours}</label>
                    }
+                   {
+                     tenHours === userLogged.name ? 
+                     <button className="button ml-1" onClick={()=> deleteValues(index, 10)}  data-toggle="modal" data-target="#exampleModal2">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                       </svg>
+                     </button> : ''
+                   }
                  </td>
               ))}
             </tr>
@@ -217,6 +281,14 @@ export default function Schedule(props) {
                    <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <label>{elevenHours}</label>
+                   }
+                   {
+                     elevenHours === userLogged.name ? 
+                     <button className="button ml-1" onClick={()=> deleteValues(index, 11)}  data-toggle="modal" data-target="#exampleModal2">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                       </svg>
+                     </button> : ''
                    }
                  </td>
               ))}
@@ -230,6 +302,14 @@ export default function Schedule(props) {
                    : 
                    <label>{twelveHours}</label>
                    }
+                   {
+                     twelveHours === userLogged.name ? 
+                     <button className="button ml-1" onClick={()=> deleteValues(index, 12)}  data-toggle="modal" data-target="#exampleModal2">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                       </svg>
+                     </button> : ''
+                   }
                  </td>
               ))}
             </tr>
@@ -241,6 +321,14 @@ export default function Schedule(props) {
                    <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <label>{thirteenHours}</label>
+                   }
+                   {
+                     thirteenHours === userLogged.name ? 
+                     <button className="button ml-1" onClick={()=> deleteValues(index, 13)}  data-toggle="modal" data-target="#exampleModal2">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                       </svg>
+                     </button> : ''
                    }
                  </td>
               ))}
@@ -254,6 +342,14 @@ export default function Schedule(props) {
                    : 
                    <label>{fourteenHours}</label>
                    }
+                   {
+                     fourteenHours === userLogged.name ? 
+                     <button className="button ml-1" onClick={()=> deleteValues(index, 14)}  data-toggle="modal" data-target="#exampleModal2">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                       </svg>
+                     </button> : ''
+                   }
                  </td>
               ))}
             </tr>
@@ -265,6 +361,14 @@ export default function Schedule(props) {
                    <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <label>{fifteenHours}</label>
+                   }
+                   {
+                     fifteenHours === userLogged.name ? 
+                     <button className="button ml-1" onClick={()=> deleteValues(index, 15)}  data-toggle="modal" data-target="#exampleModal2">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                       </svg>
+                     </button> : ''
                    }
                  </td>
               ))}
@@ -278,6 +382,14 @@ export default function Schedule(props) {
                    : 
                    <label>{sixteenHours}</label>
                    }
+                   {
+                     sixteenHours === userLogged.name ? 
+                     <button className="button ml-1" onClick={()=> deleteValues(index, 16)}  data-toggle="modal" data-target="#exampleModal2">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                       </svg>
+                     </button> : ''
+                   }
                  </td>
               ))}
             </tr>
@@ -289,6 +401,14 @@ export default function Schedule(props) {
                    <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <label>{seventeenHours}</label>
+                   }
+                   {
+                     seventeenHours === userLogged.name ? 
+                     <button className="button ml-1" onClick={()=> deleteValues(index, 17)}  data-toggle="modal" data-target="#exampleModal2">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                       </svg>
+                     </button> : ''
                    }
                  </td>
               ))}
@@ -302,6 +422,14 @@ export default function Schedule(props) {
                    : 
                    <label>{eighteenHours}</label>
                    }
+                   {
+                     eighteenHours === userLogged.name ? 
+                     <button className="button ml-1" onClick={()=> deleteValues(index, 18)}  data-toggle="modal" data-target="#exampleModal2">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                       </svg>
+                     </button> : ''
+                   }
                  </td>
               ))}
             </tr>
@@ -313,6 +441,14 @@ export default function Schedule(props) {
                    <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <label>{nineteenHours}</label>
+                   }
+                   {
+                     nineteenHours === userLogged.name ? 
+                     <button className="button ml-1" onClick={()=> deleteValues(index, 20)}  data-toggle="modal" data-target="#exampleModal2">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                       </svg>
+                     </button> : ''
                    }
                  </td>
               ))}
@@ -326,6 +462,15 @@ export default function Schedule(props) {
                    : 
                    <label>{twenyHours}</label>
                    }
+                   {
+                     twenyHours === userLogged.name ? 
+                     <button className="button ml-1" onClick={()=> deleteValues(index, 20)}  data-toggle="modal" data-target="#exampleModal2">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                       </svg>
+                     </button> : ''
+                   }
+                   
                  </td>
               ))}
             </tr>
@@ -337,6 +482,14 @@ export default function Schedule(props) {
                    <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <label>{twenyoneHours}</label>
+                   }
+                   {
+                     twenyoneHours === userLogged.name ? 
+                     <button className="button ml-1" onClick={()=> deleteValues(index, 21)}  data-toggle="modal" data-target="#exampleModal2">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                       </svg>
+                     </button> : ''
                    }
                  </td>
               ))}
@@ -350,6 +503,14 @@ export default function Schedule(props) {
                    : 
                    <label>{twenytwoHours}</label>
                    }
+                   {
+                     twenytwoHours === userLogged.name ? 
+                     <button className="button ml-1" onClick={()=> deleteValues(index, 22)}  data-toggle="modal" data-target="#exampleModal2">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                       </svg>
+                     </button> : ''
+                   }
                  </td>
               ))}
             </tr>
@@ -361,6 +522,14 @@ export default function Schedule(props) {
                    <button  type="button" onClick={()=> console.log(`${index}`)}  data-toggle="modal" data-target="#exampleModal"> disponivel</button> 
                    : 
                    <label>{twenythreeHours}</label>
+                   }
+                   {
+                     twenythreeHours === userLogged.name ? 
+                     <button className="button ml-1" onClick={()=> deleteValues(index, 23)}  data-toggle="modal" data-target="#exampleModal2">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                       </svg>
+                     </button> : ''
                    }
                  </td>
               ))}
@@ -389,6 +558,28 @@ export default function Schedule(props) {
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
         <button type="button" class="btn btn-primary">Salvar Agendamento</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Deletar o Agendamento</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <h3>Deseja mesmo deletar?</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" onClick={()=> deleteUser(indexDelete, hourDelete)}>Deletar</button>
       </div>
     </div>
   </div>
